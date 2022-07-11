@@ -3,17 +3,17 @@ package com.dannidev.Modelo;
 public class empleado extends persona {
   
   //Atributos
-  public Integer sueldobruto;
+  public Double sueldobruto;
 
 
   //Constructores
 
 
   //Metodos
-  //TODO: Desarrollar metodos mostrar 
+   
   
   public  void calcularsalarioneto(){
-
+  //TODO: Desarrollar metodos calcular salario meto
 
   }
 

@@ -2,7 +2,7 @@ package com.dannidev.Modelo;
 
 public class cliente extends persona {
   //Atributos
-  public Integer telefono;
+  public String telefono;
 
 
 
