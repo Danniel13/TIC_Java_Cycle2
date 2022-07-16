@@ -53,5 +53,18 @@ select DISTINCT department_id from employees;
 
 
 
--- Hace una validación de los datos unicos entre dos columnas:
+-- VALIDACION DE DATOS UNICOS EN DOS COLUMNAS
 SELECT DISTINCT department_id, manager_id FROM employees;
+
+
+--CONCATENAR CAMPOS
+select last_name || ', ' || job_id as "Employee And Title" from employees;
+
+--Concatenacion:
+SELECT employee_id ||","|| first_name ||","|| last_name ||","|| email ||","|| phone_number ||","||
+hire_date ||","|| job_id ||","|| salary ||","|| manager_id ||","|| department_id  as THE_OUTPUT
+FROM employees ;
+
+
+
+
