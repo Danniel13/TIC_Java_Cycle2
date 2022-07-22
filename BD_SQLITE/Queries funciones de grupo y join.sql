@@ -124,28 +124,61 @@ SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_n
 NATURAL JOIN locations l
 NATURAL JOIN countries c;
 
+
+
 SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name from departments d
 JOIN locations l USING (location_id)
 JOIN countries c USING (country_id);
 
 
+-----------------------------------------------------------------------------------
 
+--JOIN ON: SE IDENTIFICAN DIRECTAMENTE LAS RELACIONES: DEFINICION EXPLICITA DE LOS CAMPOS
+--RELACIONADOS.-- SE USA CUANDO AMBAS TABLAS TIENEN EL MISMO NOMBRE DE CAMPOS:
 
---Cuando hay datos con el mismo valor de cabecera en las tablas que se quieren unir no
--- es recomendable usar natural join
--- ON: CUALES SON LOS CAMPOS DE TAL TABLA TAL CAMPO:
-
-SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name
-FROM departments d
-JOIN locations l ON (D.location_id = l.location_id)
+SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name from departments d
+JOIN locations l ON (d.location_id = l.location_id)
 JOIN countries c ON (l.country_id = c.country_id);
 
 
 
 
--- //USING JOIN: SE ESPECIFICAN LOS CAMPOS QUE QUIEREN TRAERSE Y RELACIONARSE
--- SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name
--- FROM departments d
--- JOIN locations l USING (l.location_id)
--- JOIN countries c USING (c.country_id );
+---INNER JOIN: LAS DOS SON IGUALES:
+SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name from departments d
+INNER JOIN locations l ON (d.location_id = l.location_id)
+INNER JOIN countries c ON (l.country_id = c.country_id);
 
+--SELF JOIN: RELACION DE UNA TABLA CON SI MISMA-- CREA UNA UNION CON LA MISMA TABLA:
+
+SELECT e.last_name as employee, m.last_name as manager from  employees e
+JOIN employees m on (e.manager_id = m.employee_id); 
+
+----------------------------------------------------------------------------------
+
+
+--NOEQUIJOIN--VALIDACION DE RANGO DE SALARIOS SEGUN LA TABLA DE JOB_GRADES:--
+select e.last_name, e.salary, jg.grade from employees e
+JOIN job_grades jg on (e.salary BETWEEN jg.lowest_sal and jg.highest_sal)
+
+--OR:
+select e.last_name, e.salary, jg.grade from employees e
+JOIN job_grades jg on (e.salary >= jg.lowest_sal and e.salary <= jg.highest_sal)
+
+
+--OUTERJOIN: TIENE LEFT-RIGHT Y FULL:
+--LEFT: DA PRIORIDAD AL CONJUNTO DE LA IZQUIERDA DEL DE LA DERECHA:
+
+--No trae registro null:
+SELECT e.last_name as employee, m.last_name as manager from  employees e
+JOIN employees m on (e.manager_id = m.employee_id); 
+
+--Si trae registro Null:
+SELECT e.last_name as employee, m.last_name as manager from  employees e
+LEFT JOIN employees m on (e.manager_id = m.employee_id); 
+
+
+--FULL OUTER: TRAE TODOS LOS DATOS DE LAS DOS TABLAS:
+SELECT e.last_name as employee, m.last_name as manager from  employees e
+FULL OUTER JOIN employees m on (e.manager_id = m.employee_id); 
+
+--CROSS JOIN:
