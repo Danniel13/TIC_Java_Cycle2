@@ -102,6 +102,9 @@ SELECT * from locations
 natural JOIN departments;
 
 
+SELECT * from countries;
+SELECT * from departments;
+SELECT * from locations;
 
 --ALIAS: PARA DIFERENCIAR DE DONDE VIENE CADA DATO SE PONE INICIAL DEL NOMBRE DE CADA TABLA.
 
@@ -120,6 +123,13 @@ JOIN locations l USING (location_id);
 SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name from departments d
 NATURAL JOIN locations l
 NATURAL JOIN countries c;
+
+SELECT d.department_id, d.department_name, l.street_address, l.city, c.country_name from departments d
+JOIN locations l USING (location_id)
+JOIN countries c USING (country_id);
+
+
+
 
 --Cuando hay datos con el mismo valor de cabecera en las tablas que se quieren unir no
 -- es recomendable usar natural join
