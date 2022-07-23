@@ -46,7 +46,7 @@ where department_id IN (  --Tiene que ser IN para COMPARAR MULTIPLES ELEMENTOS
   SELECT department_id 
   from departments
   WHERE location_id = 1700
-)
+);
 
 
 --NOT IN:
@@ -55,4 +55,13 @@ where department_id Not IN (  --Tiene que ser IN para hacer una comparacion con 
   SELECT department_id 
   from departments
   WHERE location_id = 1700
-)
+);
+
+
+---SUBCONSULTAS COMO TABLA:
+
+SELECT ROUND  (AVG(average_salary), 0)From (
+select avg(Salary) average_salary
+from employees
+group by department_id
+) department_salary;
