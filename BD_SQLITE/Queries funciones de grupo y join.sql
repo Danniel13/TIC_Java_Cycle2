@@ -97,6 +97,12 @@ SELECT department_id, department_name, street_address, city from departments
 natural JOIN locations;
 
 
+SELECT location_id, street_address, city, state_province, country_id from locations
+NATURAL JOIN countries;
+
+
+
+
 
 SELECT * from locations
 natural JOIN departments;
@@ -117,6 +123,8 @@ NATURAL JOIN locations l;
 -- CON USIN SE INDICA LA COLUMNA QUE VA A RELACIONAR: PARA CUANDO SE REPITEN NOMBRES EN COLUMNAS
 SELECT d.department_id, d.department_name, l.street_address, l.city from departments d
 JOIN locations l USING (location_id);
+
+
 
 --Haciendo join con 3 tablas: DEPARTMENTS--- LOCATIONS --- COUNTRIES
 
@@ -181,4 +189,14 @@ LEFT JOIN employees m on (e.manager_id = m.employee_id);
 SELECT e.last_name as employee, m.last_name as manager from  employees e
 FULL OUTER JOIN employees m on (e.manager_id = m.employee_id); 
 
---CROSS JOIN:
+--CROSS JOIN: Producto cruce entre dos conjnutos: Se usa cuando se tienen dos tablas
+--que no estan relacionadas, y lo que se quiere es tener una relación que se pueden 
+--tener en esa relación.
+
+--SE QUIERE HACER UN JOIN ENTRE DOS TABLAS QUE NO TIENEN NINGUNA RELACION:REGIONES Y JOBS
+
+SELECT r.region_id, r.region_name, j.job_title FROM regions r
+cross JOIN jobs j;--Cada elemento de región lo combina con cada elemnto de job.
+
+
+
