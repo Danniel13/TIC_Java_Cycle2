@@ -27,9 +27,19 @@ public class App
         System.out.println("Conexión a base de datos Ok");
         var statment = connectionDB.createStatement(); //CREACION INSTRUCCION SQL
         //statment.executeQuery("CREATE TABLE DEMO (ID INTEGER PRIMARY KEY, NAME VARCHAR(100) NOT NULL);"); //SENTENCIA CREACION TABLA
+
+        //EXECUTE:DDL CREACION DE TABLAS !! SELECT!!
+        //EXECUTEUPDATE: DML: INSERT DELETE UPDATE
+
+          //ADD REGISTERS:
           // statment.executeUpdate("INSERT INTO DEMO (ID, NAME) VALUES (1, 'First register')");
-          statment.executeUpdate("INSERT INTO DEMO (ID, NAME) VALUES (2, 'Second register')");
-         
+          // statment.executeUpdate("INSERT INTO DEMO (ID, NAME) VALUES (2, 'Second register')");
+
+
+          //UPDATE!!
+          statment.executeUpdate("UPDATE  DEMO SET NAME= 'Este dato se modifico' where ID = 2;");
+
+
 
           ////
          //INTENTO DE CONSULTA SELECT:
